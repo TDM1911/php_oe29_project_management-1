@@ -22,6 +22,9 @@ window.Vue = require('vue');
 Vue.component('calendar', require('./components/Calendar.vue').default);
 Vue.component('task-input', require('./components/TaskInput.vue').default);
 Vue.component('comment', require('./components/Comment.vue').default);
+Vue.component('chat-item', require('./components/ChatItem.vue').default);
+Vue.component('chat-box', require('./components/ChatBox.vue').default);
+Vue.component('chat-room', require('./components/ChatRoom.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

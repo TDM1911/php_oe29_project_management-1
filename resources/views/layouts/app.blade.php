@@ -76,7 +76,24 @@
                 </ul>
             </div>
         </nav>
-
+        @auth
+            <div class="fixed-bottom text-right m-2 justify-content-right">
+                <chat-box
+                    render="{{ route('messages.show', [1]) }}"
+                    current_user="{{ auth()->user()->id }}"
+                    store="{{ route('messages.store', [1]) }}"
+                    room="{{ \App\Models\Room::find(1)->id }}"
+                    room_name="{{ \App\Models\Room::find(1)->name }}">
+                </chat-box>
+            </div>
+            <chat-room
+                render="{{ route('messages.show', [1]) }}"
+                current_user="{{ auth()->user()->id }}"
+                store="{{ route('messages.store', [1]) }}"
+                room="{{ \App\Models\Room::find(1)->id }}"
+                room_name="{{ \App\Models\Room::find(1)->name }}">
+            </chat-room>
+        @endauth
         <main class="py-4">
             @yield('content')
         </main>

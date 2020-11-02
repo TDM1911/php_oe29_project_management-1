@@ -124,3 +124,8 @@ Route::patch('update-group-lecturer/{group}', 'LecturerController@updateGroup')-
     ->middleware('permission:update-group', 'can:update,group');
 Route::get('group-detail/{group}', 'LecturerController@groupDetail')->name('lecturers.groupDetail')
     ->middleware('permission:view-group', 'can:view,group');
+
+Route::get('messages/{room}', 'MessageController@show')->name('messages.show');
+Route::post('messages/{room}', 'MessageController@store')->name('messages.store');
+Route::delete('messages/{message}', 'MessageController@destroy')->name('messages.destroy');
+Route::get('room/', 'RoomController@search')->name('room.search');
