@@ -80,6 +80,11 @@
         <main class="py-4">
             @yield('content')
         </main>
+        @auth
+            <notification-box
+                channel="{{ auth()->user()->id }}">
+            </notification-box>
+        @endauth
     </div>
 </body>
 </html>

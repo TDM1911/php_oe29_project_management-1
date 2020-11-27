@@ -15,3 +15,5 @@ npm-debug.log
 yarn-error.log
 storage/framework/laravel-excel
 coverage/
+laravel-echo-server.json
+laravel-echo-server.lock

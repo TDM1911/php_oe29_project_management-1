@@ -19,9 +19,20 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+
+import Echo from "laravel-echo";
+
+window.io = require('socket.io-client');
+
+window.Echo = new Echo({
+    broadcaster: 'socket.io',
+    host: `${window.location.protocol}//${window.location.hostname}:6001`
+});
+
 Vue.component('calendar', require('./components/Calendar.vue').default);
 Vue.component('task-input', require('./components/TaskInput.vue').default);
 Vue.component('comment', require('./components/Comment.vue').default);
+Vue.component('notification-box', require('./components/NotificationBox.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -132,3 +132,6 @@ Route::get('group-detail/{group}', 'LecturerController@groupDetail')->name('lect
 
 Route::get('/auth/{driver}', 'SocialLoginController@redirectToProvider')->name('social.auth');
 Route::get('/auth/callback/{driver}', 'SocialLoginController@handleProviderCallback')->name('social.callback');
+
+Route::get('/notifications', 'NotificationController@getAllNotifications')->name('notifications.index');
+Route::patch('/notifications/{notification}', 'NotificationController@markAsRead')->name('notifications.read');

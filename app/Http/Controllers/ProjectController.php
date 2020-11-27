@@ -11,7 +11,8 @@ use App\Repositories\User\UserRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProjectLinkRequest;
 use App\Repositories\Project\ProjectRepositoryInterface;
-use Mail;
+use App\Notifications\ProjectApproved;
+use App\Events\NotifyEvent;
 
 class ProjectController extends Controller
 {
@@ -161,6 +162,16 @@ class ProjectController extends Controller
     {
         if (!$this->projectRepository->toggle($project)){
             abort(404);
+        }
+        $project = $this->projectRepository->find($project, ['group.users']);
+        if ($project->is_accepted) {
+            foreach ($project->group->users as $user) {
+                $notification = new ProjectApproved($project->name, route('projects.show', [$project->id]));
+                $user->notify($notification);
+                broadcast(new NotifyEvent([
+                    'channel' => $user->id,
+                ]))->toOthers();
+            }
         }
 
         return back();
